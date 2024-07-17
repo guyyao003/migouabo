@@ -5,12 +5,10 @@ import 'package:intl/intl.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
-import 'package:go_router/go_router.dart';
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import './pages/meals/acceuil/acceuil_widget.dart';
 import './pages/profile/profile/profile_widget.dart';
 import 'package:lottie/lottie.dart';
@@ -159,7 +157,7 @@ class _NavBarPageState extends State<NavBarPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            _buildBottomNavItem(context, Icons.category, 'Categorie', 1),
+            _buildBottomNavItem(context, Icons.grid_view_rounded, 'Categorie', 1),
             _buildBottomNavItem(context, Icons.person_rounded, 'Profile', 2),
           ],
         ),
@@ -172,7 +170,7 @@ class _NavBarPageState extends State<NavBarPage> {
             });
           },
         child: Container(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
              decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primary,
            borderRadius: BorderRadius.circular(1000),
