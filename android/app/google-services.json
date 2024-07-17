@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "812333974524",
+    "project_id": "migouabo-v2",
+    "storage_bucket": "migouabo-v2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812333974524:android:df64cfe0fa6313d4416879",
+        "android_client_info": {
+          "package_name": "com.migouabo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuzK3CL-I0UieV8xokOt-pr71YBUbURBs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
