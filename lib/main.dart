@@ -1,4 +1,5 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:migouabo/detail_produit/cartItem_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -25,8 +26,13 @@ void main() async {
   final appState = FFAppState();
   await appState.initializePersistedState();
 
-  runApp(ChangeNotifierProvider(
-    create: (context) => appState,
+  runApp(
+   MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => FFAppState()),
+        ChangeNotifierProvider(create: (context) => CartModel()),
+      ],
+    
     child: const MyApp(),
   ));
 }
@@ -146,6 +152,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final MediaQueryData queryData = MediaQuery.of(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false, // Ajoutez cette ligne
       body: MediaQuery(
         data: queryData.removeViewInsets(removeBottom: true).removeViewPadding(removeBottom: true),
         child: _currentPage ?? tabs[_currentPageName]!,
@@ -162,22 +169,26 @@ class _NavBarPageState extends State<NavBarPage> {
           ],
         ),
       ),
-      floatingActionButton: InkWell(
-        onTap: () {
-            setState(() {
-              _currentPage = null;
-              _currentPageName = 'Acceuil';
-            });
-          },
+      floatingActionButton: FloatingActionButton(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        onPressed: () {
+          setState(() {
+            _currentPage = null;
+            _currentPageName = 'Acceuil';
+          });
+        },
         child: Container(
           padding: const EdgeInsets.all(12),
-             decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).primary,
-           borderRadius: BorderRadius.circular(1000),
-             ),
-          
-          child: Lottie.asset('assets/lottie_animations/system-regular-41-home.json',height: 30,backgroundLoading: true),
-        
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).primary,
+            borderRadius: BorderRadius.circular(1000),
+          ),
+          child: Lottie.asset(
+            'assets/lottie_animations/system-regular-41-home.json',
+            height: 30,
+            backgroundLoading: true,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

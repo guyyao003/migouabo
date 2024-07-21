@@ -301,16 +301,32 @@ class _AcceuilWidgetState extends State<AcceuilWidget> {
                             height: mediaquery.height * .06,
                           width: mediaquery.height ,
                           decoration: BoxDecoration(
+                            image: const DecorationImage(image: AssetImage('assets/images/Présentation 33.png'), fit: BoxFit.cover,),
+                            borderRadius: BorderRadius.circular(15),
+                            color: FlutterFlowTheme.of(context).primary),
+                        ),
+                        Container(
+                 margin: EdgeInsets.symmetric(vertical: mediaquery.height * .015),
+                            height: mediaquery.height * .06,
+                          width: mediaquery.height ,
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(image: AssetImage('assets/images/Présentation44.jpg'), fit: BoxFit.cover,),
+                            borderRadius: BorderRadius.circular(15),
+                            color: FlutterFlowTheme.of(context).primary),
+                        ),
+                          Container(
+                 margin: EdgeInsets.symmetric(vertical: mediaquery.height * .015),
+                            height: mediaquery.height * .06,
+                          width: mediaquery.height ,
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(image: AssetImage('assets/images/Présentation222.png'), fit: BoxFit.cover,),
                             borderRadius: BorderRadius.circular(15),
                             color: FlutterFlowTheme.of(context).primary),
                         ),
                         
                         ],
                       ),
-                           
-                            
-                          
-                        
+
                           ////////////// section offres 
                           Column(
                             mainAxisSize: MainAxisSize.max,

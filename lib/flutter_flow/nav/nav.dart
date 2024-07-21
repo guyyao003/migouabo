@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:migouabo/detail_produit/cartItem_model.dart';
 import 'package:provider/provider.dart';
 import '../../backend/backend.dart';
 import '../../auth/base_auth_user_provider.dart';
@@ -29,13 +30,6 @@ import '../../modif_detail_produit/modif_detail_produit_widget.dart';
 import '../../methode_payment/methode_payment_widget.dart';
 
 
-
-
-
-
-
-
-
 const kTransitionInfoKey = '__transition_info__';
 
 class AppStateNotifier extends ChangeNotifier {
@@ -48,6 +42,9 @@ class AppStateNotifier extends ChangeNotifier {
   BaseAuthUser? user;
   bool showSplashImage = true;
   String? _redirectLocation;
+ 
+
+  
 
   /// Determines whether the app will refresh and build again when a sign
   /// in or sign out happens. This is useful when the app is launched or
@@ -233,6 +230,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 'panier': getDoc(['Panier'], PanierRecord.fromSnapshot),
               },
               builder: (context, params) => DetailProduitWidget(
+                product: CartItem(
+                    nomProduit: 'Banana',
+                    prix: 4000,
+                    image: 'path/to/image',
+                    categorie: 'Fruits',
+                    quantite: 1,
+                    description: 'Fresh bananas',
+                  ),
                 fruits: params.getParam(
                   'fruits',
                   ParamType.Document,

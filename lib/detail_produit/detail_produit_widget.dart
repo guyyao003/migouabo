@@ -1,3 +1,5 @@
+import 'package:migouabo/detail_produit/cartItem_model.dart';
+
 import '../auth/base_auth_user_provider.dart';
 import '../auth/firebase_auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -21,10 +23,12 @@ class DetailProduitWidget extends StatefulWidget {
     super.key,
     this.fruits,
     this.panier,
+    this.product,
   });
 
   final ProduitsRecord? fruits;
   final PanierRecord? panier;
+  final CartItem? product;
 
   @override
   State<DetailProduitWidget> createState() => _DetailProduitWidgetState();
@@ -40,6 +44,7 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
 
   @override
   void initState() {
+    
     super.initState();
     _model = createModel(context, () => DetailProduitModel());
 
@@ -273,6 +278,7 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
                               ),
                             ),
                           ),
+                          Row(children: [
                           Align(
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Padding(
@@ -300,6 +306,7 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
                               ),
                             ),
                           ),
+                          
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 5.0, 0.0, 10.0, 0.0),
@@ -334,8 +341,11 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
                               ),
                             ),
                           ),
+
+                          ],),
                         ],
                       ),
+
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 20.0, 0.0, 0.0),
@@ -399,105 +409,148 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
                           ],
                         ),
                       ),
+                      //
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            8.0, 5.0, 16.0, 16.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Text(
                           valueOrDefault<String>(
                             widget.fruits?.description,
                             'Description',
                           ),
                           style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+                              FlutterFlowTheme.of(context).labelSmall.override(
                                     fontFamily: 'Inter',
                                     letterSpacing: 0.0,
                                   ),
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation']!),
                       ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 20.0, 16.0, 10.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RichText(
-                              textScaler: MediaQuery.of(context).textScaler,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: valueOrDefault<String>(
-                                      widget.fruits?.prix,
-                                      'prix',
-                                    ),
-                                    style: const TextStyle(),
-                                  ),
-                                  const TextSpan(
-                                    text: ' F CFA',
-                                    style: TextStyle(),
-                                  )
-                                ],
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                              textAlign: TextAlign.start,
-                            ),
-                            Container(
-                              width: 130.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(12.0),
-                                shape: BoxShape.rectangle,
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 2.0,
-                                ),
-                              ),
-                              child: FlutterFlowCountController(
-                                decrementIconBuilder: (enabled) => Icon(
-                                  Icons.remove_rounded,
-                                  color: enabled
-                                      ? FlutterFlowTheme.of(context)
-                                          .secondaryText
-                                      : FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                  size: 16.0,
-                                ),
-                                incrementIconBuilder: (enabled) => Icon(
-                                  Icons.add_rounded,
-                                  color: enabled
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                  size: 16.0,
-                                ),
-                                countBuilder: (count) => Text(
-                                  count.toString(),
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineSmall
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                count: _model.countControllerValue ??= 1,
-                                updateCount: (count) => setState(
-                                    () => _model.countControllerValue = count),
-                                stepSize: 1,
-                                minimum: 1,
-                              ),
-                            ),
-                          ],
-                        ).animateOnPageLoad(
-                            animationsMap['rowOnPageLoadAnimation']!),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsetsDirectional.fromSTEB(
+                      //       16.0, 20.0, 16.0, 10.0),
+                      //   child: Row(
+                      //     mainAxisSize: MainAxisSize.max,
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       RichText(
+                      //         textScaler: MediaQuery.of(context).textScaler,
+                      //         text: TextSpan(
+                      //           children: [
+                      //             TextSpan(
+                      //               text: valueOrDefault<String>(
+                      //                 widget.fruits?.prix,
+                      //                 'prix',
+                      //               ),
+                      //               style: const TextStyle(),
+                      //             ),
+                      //             const TextSpan(
+                      //               text: ' F CFA',
+                      //               style: TextStyle(),
+                      //             )
+                      //           ],
+                      //           style: FlutterFlowTheme.of(context)
+                      //               .headlineSmall
+                      //               .override(
+                      //                 fontFamily: 'Inter',
+                      //                 letterSpacing: 0.0,
+                      //               ),
+                      //         ),
+                      //         textAlign: TextAlign.start,
+                      //       ),
+                      //       Container(
+                      //         width: 130.0,
+                      //         height: 50.0,
+                      //         decoration: BoxDecoration(
+                      //           color: FlutterFlowTheme.of(context)
+                      //               .secondaryBackground,
+                      //           borderRadius: BorderRadius.circular(12.0),
+                      //           shape: BoxShape.rectangle,
+                      //           border: Border.all(
+                      //             color: FlutterFlowTheme.of(context).alternate,
+                      //             width: 2.0,
+                      //           ),
+                      //         ),
+                      //         child: FlutterFlowCountController(
+                      //           decrementIconBuilder: (enabled) => Icon(
+                      //             Icons.remove_rounded,
+                      //             color: enabled
+                      //                 ? FlutterFlowTheme.of(context)
+                      //                     .secondaryText
+                      //                 : FlutterFlowTheme.of(context)
+                      //                     .secondaryText,
+                      //             size: 16.0,
+                      //           ),
+                      //           incrementIconBuilder: (enabled) => Icon(
+                      //             Icons.add_rounded,
+                      //             color: enabled
+                      //                 ? FlutterFlowTheme.of(context).primary
+                      //                 : FlutterFlowTheme.of(context)
+                      //                     .secondaryText,
+                      //             size: 16.0,
+                      //           ),
+                      //           countBuilder: (count) => Text(
+                      //             count.toString(),
+                      //             style: FlutterFlowTheme.of(context)
+                      //                 .headlineSmall
+                      //                 .override(
+                      //                   fontFamily: 'Inter',
+                      //                   letterSpacing: 0.0,
+                      //                 ),
+                      //           ),
+                      //           count: _model.countControllerValue ??= 1,
+                      //           updateCount: (count) => setState(
+                      //               () => _model.countControllerValue = count),
+                      //           stepSize: 1,
+                      //           minimum: 1,
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ).animateOnPageLoad(
+                      //       animationsMap['rowOnPageLoadAnimation']!),
+                      // ),
+                      Consumer<CartModel>(
+    builder: (context, cart, child) {
+      // Check if product is null to avoid runtime errors
+      final product = widget.product;
+      if (product == null) {
+        return Center(child: Text('Produit non disponible'));
+      }
+
+      return Column(
+        children: [
+          Text(product.nomProduit),
+          Text('${product.prix} F CFA'),
+          Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.remove),
+                onPressed: () {
+                  logFirebaseEvent('DECREMENT_ITEM');
+                  cart.decrementQuantity(product); // Correct usage
+                },
+              ),
+              Text('${product.quantite}'),
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () {
+                  logFirebaseEvent('INCREMENT_ITEM');
+                  cart.incrementQuantity(product); // Correct usage
+                },
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  logFirebaseEvent('ADD_TO_CART');
+                  cart.addItem(product); // Correct usage
+                },
+                child: const Text('Ajouter au Panier'),
+              ),
+            ],
+          ),
+          Text('Total: ${cart.totalPrice} F CFA'),
+        ],
+      );
+    },
+  ),
                     ],
                   ),
                 ),
@@ -593,7 +646,7 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
                               },
                               text: 'Ajouter au Panier',
                               options: FFButtonOptions(
-                                width: 270.0,
+                                width: MediaQuery.sizeOf(context).width * .7,
                                 height: 50.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),

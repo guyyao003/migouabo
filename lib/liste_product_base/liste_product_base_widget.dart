@@ -1,3 +1,5 @@
+import 'package:migouabo/backend/firebase_analytics/analytics.dart';
+import 'package:migouabo/flutter_flow/flutter_flow_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_model.dart';
@@ -24,8 +26,8 @@ class _ListeProductBaseWidgetState extends State<ListeProductBaseWidget> {
     super.initState();
     _model = createModel(context, () => ListeProductBaseModel());
 
-    // logFirebaseEvent('screen_view',
-    //     parameters: {'screen_name': 'ListeProductBase'});
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ListeProductBase'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -57,9 +59,9 @@ class _ListeProductBaseWidgetState extends State<ListeProductBaseWidget> {
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              // logFirebaseEvent('LISTE_PRODUCT_BASE_Icon_ub5j2pbv_ON_TAP');
-              // logFirebaseEvent('Icon_navigate_back');
-              // context.safePop();
+              logFirebaseEvent('LISTE_PRODUCT_BASE_Icon_ub5j2pbv_ON_TAP');
+              logFirebaseEvent('Icon_navigate_back');
+              context.safePop();
             },
             child: Icon(
               Icons.chevron_left,
@@ -206,9 +208,9 @@ class _ListeProductBaseWidgetState extends State<ListeProductBaseWidget> {
                         snapshot.data!;
                     return RefreshIndicator(
                       onRefresh: () async {
-                        // logFirebaseEvent(
-                        //     'LISTE_PRODUCT_BASE_ListView_365p0upy_ON_');
-                        // logFirebaseEvent('ListView_refresh_database_request');
+                        logFirebaseEvent(
+                            'LISTE_PRODUCT_BASE_ListView_365p0upy_ON_');
+                        logFirebaseEvent('ListView_refresh_database_request');
                         setState(() => _model.firestoreRequestCompleter = null);
                         await _model.waitForFirestoreRequestCompleted();
                       },

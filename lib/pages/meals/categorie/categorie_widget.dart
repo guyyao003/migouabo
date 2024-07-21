@@ -22,7 +22,7 @@ class _CategorieWidgetState extends State<CategorieWidget> {
     super.initState();
     _model = createModel(context, () => CategorieModel());
 
-    // logFirebaseEvent('screen_view', parameters: {'screen_name': 'Categorie'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Categorie'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -316,8 +316,8 @@ class _CategorieWidgetState extends State<CategorieWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            // logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
-                            // logFirebaseEvent('menuItem_navigate_to');
+                            logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
+                            logFirebaseEvent('menuItem_navigate_to');
 
                             context.pushNamed('ListeProductPoisson');
                           },
@@ -412,8 +412,8 @@ class _CategorieWidgetState extends State<CategorieWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            // logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
-                            // logFirebaseEvent('menuItem_navigate_to');
+                            logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
+                            logFirebaseEvent('menuItem_navigate_to');
 
                             context.pushNamed('ListeProductViande');
                           },
@@ -508,8 +508,8 @@ class _CategorieWidgetState extends State<CategorieWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            // logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
-                            // logFirebaseEvent('menuItem_navigate_to');
+                            logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
+                            logFirebaseEvent('menuItem_navigate_to');
 
                             context.pushNamed('ListeProductBoisson');
                           },
@@ -604,8 +604,8 @@ class _CategorieWidgetState extends State<CategorieWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            // logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
-                            // logFirebaseEvent('menuItem_navigate_to');
+                            logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
+                            logFirebaseEvent('menuItem_navigate_to');
 
                             context.pushNamed('ListeProductBase');
                           },

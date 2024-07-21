@@ -1,3 +1,6 @@
+import 'package:migouabo/detail_produit/cartItem_model.dart';
+import 'package:provider/provider.dart';
+
 import '../auth/base_auth_user_provider.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -24,8 +27,10 @@ class _PanierWidgetState extends State<PanierWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PanierModel());
+    ChangeNotifierProvider(
+      create: (context) => CartModel(),);
 
-    // logFirebaseEvent('screen_view', parameters: {'screen_name': 'Panier'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Panier'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -59,8 +64,8 @@ class _PanierWidgetState extends State<PanierWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              // logFirebaseEvent('PANIER_arrow_back_rounded_ICN_ON_TAP');
-              // logFirebaseEvent('IconButton_navigate_back');
+              logFirebaseEvent('PANIER_arrow_back_rounded_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -118,10 +123,10 @@ class _PanierWidgetState extends State<PanierWidget> {
                               snapshot.data!;
                           return RefreshIndicator(
                             onRefresh: () async {
-                              // logFirebaseEvent(
-                              //     'PANIER_ListView_c43e6kbd_ON_PULL_TO_REFR');
-                              // logFirebaseEvent(
-                              //     'ListView_refresh_database_request');
+                              logFirebaseEvent(
+                                  'PANIER_ListView_c43e6kbd_ON_PULL_TO_REFR');
+                              logFirebaseEvent(
+                                  'ListView_refresh_database_request');
                               setState(() =>
                                   _model.firestoreRequestCompleter = null);
                               await _model.waitForFirestoreRequestCompleted();
@@ -302,11 +307,11 @@ class _PanierWidgetState extends State<PanierWidget> {
                                               size: 20.0,
                                             ),
                                             onPressed: () async {
-                                              // logFirebaseEvent(
-                                              //     'PANIER_PAGE_edit_outlined_ICN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'PANIER_PAGE_edit_outlined_ICN_ON_TAP');
                                               if (!loggedIn) {
-                                                // logFirebaseEvent(
-                                                //     'IconButton_show_snack_bar');
+                                                logFirebaseEvent(
+                                                    'IconButton_show_snack_bar');
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
@@ -327,8 +332,8 @@ class _PanierWidgetState extends State<PanierWidget> {
                                                             .secondary,
                                                   ),
                                                 );
-                                                // logFirebaseEvent(
-                                                //     'IconButton_navigate_to');
+                                                logFirebaseEvent(
+                                                    'IconButton_navigate_to');
 
                                                 context.pushNamed('SignIn');
                                               }
@@ -347,11 +352,11 @@ class _PanierWidgetState extends State<PanierWidget> {
                                               size: 20.0,
                                             ),
                                             onPressed: () async {
-                                              // logFirebaseEvent(
-                                              //     'PANIER_delete_outline_rounded_ICN_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'PANIER_delete_outline_rounded_ICN_ON_TAP');
                                               if (!loggedIn) {
-                                                // logFirebaseEvent(
-                                                //     'IconButton_show_snack_bar');
+                                                logFirebaseEvent(
+                                                    'IconButton_show_snack_bar');
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
@@ -372,8 +377,8 @@ class _PanierWidgetState extends State<PanierWidget> {
                                                             .secondary,
                                                   ),
                                                 );
-                                                // logFirebaseEvent(
-                                                //     'IconButton_navigate_to');
+                                                logFirebaseEvent(
+                                                    'IconButton_navigate_to');
 
                                                 context.pushNamed('SignIn');
                                               }
@@ -582,8 +587,8 @@ class _PanierWidgetState extends State<PanierWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                // logFirebaseEvent('PANIER_PAGE_Container_cq6polkl_ON_TAP');
-                // logFirebaseEvent('Container_navigate_to');
+                logFirebaseEvent('PANIER_PAGE_Container_cq6polkl_ON_TAP');
+                logFirebaseEvent('Container_navigate_to');
 
                 context.pushNamed('methode_payment');
               },
