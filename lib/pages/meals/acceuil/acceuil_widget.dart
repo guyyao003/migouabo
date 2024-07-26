@@ -28,7 +28,6 @@ class _AcceuilWidgetState extends State<AcceuilWidget> {
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Acceuil'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -65,6 +64,7 @@ class _AcceuilWidgetState extends State<AcceuilWidget> {
                         'Migouabo',
                         style: FlutterFlowTheme.of(context).displayLarge.override(
                               fontFamily: 'Plus Jakarta Sans',
+                              // color: Colors.white,
                               fontSize: 40.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
@@ -375,150 +375,154 @@ class _AcceuilWidgetState extends State<AcceuilWidget> {
                       List<ProduitsRecord>
                           gridViewProduitsRecordList =
                           snapshot.data!;
-                      return GridView.builder(
-                        padding: EdgeInsets.zero,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10.0,
-                          mainAxisSpacing: 10.0,
-                          childAspectRatio: 1.0,
-                        ),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                       
-                        itemCount:
-                            gridViewProduitsRecordList.length,
-                       
-                        itemBuilder: (context, gridViewIndex) {
-                          final gridViewProduitsRecord =
-                              gridViewProduitsRecordList[
-                                  gridViewIndex];
-                          return Container(
-                            // padding: EdgeInsets.all(10),
-                            width: mediaquery.width,
-                            height: mediaquery.height,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black12),
-                                  borderRadius: BorderRadius.circular(8),
-                                  color:const Color.fromARGB(82, 200, 230, 201),
-                            ),
-                            child: InkWell(                  
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'ACCEUIL_PAGE_Column_plqok034_ON_TAP');
-                                logFirebaseEvent(
-                                    'Column_navigate_to');
-                                context.pushNamed(
-                                  'DetailProduit',
-                                  queryParameters: {
-                                    'fruits': serializeParam(
-                                      gridViewProduitsRecord,
-                                      ParamType.Document,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    'fruits':
+                      return SizedBox(
+                        height: mediaquery.height * .42,
+                        child: GridView.builder(
+                          
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 1.0,
+                          ),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                         
+                          itemCount:
+                              gridViewProduitsRecordList.length,
+                         
+                          itemBuilder: (context, gridViewIndex) {
+                            final gridViewProduitsRecord =
+                                gridViewProduitsRecordList[
+                                    gridViewIndex];
+                            return Container(
+                              // padding: EdgeInsets.all(10),
+                              width: mediaquery.width,
+                              height: mediaquery.height,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black12),
+                                    borderRadius: BorderRadius.circular(8),
+                                    color:const Color.fromARGB(82, 200, 230, 201),
+                              ),
+                              child: InkWell(                  
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'ACCEUIL_PAGE_Column_plqok034_ON_TAP');
+                                  logFirebaseEvent(
+                                      'Column_navigate_to');
+                                  context.pushNamed(
+                                    'DetailProduit',
+                                    queryParameters: {
+                                      'fruits': serializeParam(
                                         gridViewProduitsRecord,
-                                  },
-                                );
-                              },
-                            
-                              //////////////////
-                              child:                                           
-                                  Column(                    
-                                    children: [
-                                      Container(
-                                        width: double.infinity,
-                                        height: mediaquery.height * .15,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image:NetworkImage(
-                                            gridViewProduitsRecord
-                                                .image,                                                  
-                                          ), ),
-                                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-                                          color: FlutterFlowTheme.of(
-                                                  context)
-                                              .secondaryBackground,
-                                        ),
-                                        margin: EdgeInsets.only(top: mediaquery.height * .002, right:mediaquery.width* .01, left: mediaquery.width* .01  ),
-                                       
-                                      ),
-                                     
-                                     Column(children: [
-                                     Text(  gridViewProduitsRecord
-                                                .nomProduit,
-                                            maxLines: 1,
-                                            style: theme
-                                                .labelLarge?.copyWith()
-                                                .override(
-                                                  fontFamily:
-                                                      'Inter',
-                                                  fontSize:
-                                                      14.0,
-                                                  letterSpacing:
-                                                      0.0,
-                                                ),
+                                        ParamType.Document,
+                                    )
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'fruits':
+                                          gridViewProduitsRecord,
+                                    },
+                                  );
+                                },
+                              
+                                //////////////////
+                                child:                                           
+                                    Column(                    
+                                      children: [
+                                        Container(
+                                          width: double.infinity,
+                                          height: mediaquery.height * .15,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image:NetworkImage(
+                                              gridViewProduitsRecord
+                                                  .image,                                                  
+                                            ), ),
+                                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                                            color: FlutterFlowTheme.of(
+                                                    context)
+                                                .secondaryBackground,
                                           ),
-                                          RichText(
-                                            textScaler:
-                                                MediaQuery.of(
-                                                        context)
-                                                    .textScaler,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text:
-                                                      gridViewProduitsRecord
-                                                          .prix,
-                                                  style: theme
-                                                      .labelLarge?.copyWith()
-                                                      .override(
-                                                        fontFamily:
-                                                            'Inter',
-                                                        letterSpacing:
-                                                            0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                const TextSpan(
-                                                  text:
-                                                      ' F CFA',
-                                                  style:
-                                                      TextStyle(),
-                                                )
-                                              ],
-                                              style: FlutterFlowTheme
-                                                      .of(context)
-                                                  .bodyMedium
+                                          margin: EdgeInsets.only(top: mediaquery.height * .002, right:mediaquery.width* .01, left: mediaquery.width* .01  ),
+                                         
+                                        ),
+                                       
+                                       Column(children: [
+                                       Text(  gridViewProduitsRecord
+                                                  .nomProduit,
+                                              maxLines: 1,
+                                              style: theme
+                                                  .labelLarge?.copyWith()
                                                   .override(
                                                     fontFamily:
                                                         'Inter',
+                                                    fontSize:
+                                                        14.0,
                                                     letterSpacing:
                                                         0.0,
-                                                    fontWeight:
-                                                        FontWeight
-                                                            .normal,
                                                   ),
                                             ),
-                                          ),
-                                     ],)
+                                            RichText(
+                                              textScaler:
+                                                  MediaQuery.of(
+                                                          context)
+                                                      .textScaler,
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text:
+                                                        gridViewProduitsRecord
+                                                            .prix,
+                                                    style: theme
+                                                        .labelLarge?.copyWith()
+                                                        .override(
+                                                          fontFamily:
+                                                              'Inter',
+                                                          letterSpacing:
+                                                              0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                  ),
+                                                  const TextSpan(
+                                                    text:
+                                                        ' F CFA',
+                                                    style:
+                                                        TextStyle(),
+                                                  )
+                                                ],
+                                                style: FlutterFlowTheme
+                                                        .of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          'Inter',
+                                                      letterSpacing:
+                                                          0.0,
+                                                      fontWeight:
+                                                          FontWeight
+                                                              .normal,
+                                                    ),
+                                              ),
+                                            ),
+                                       ],)
+                                             
                                            
-                                         
-                                    ],
-                                  ),
-                                  
-                           
-                            ),
-                          );
-                        },
+                                      ],
+                                    ),
+                                    
+                             
+                              ),
+                            );
+                          },
+                        ),
                       );
                     },
                   ),
@@ -531,167 +535,171 @@ class _AcceuilWidgetState extends State<AcceuilWidget> {
                     builder: (context) {
                       final afficheResultat =
                           _model.simpleSearchResults.toList();
-                      return GridView.builder(
-                        padding: EdgeInsets.zero,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10.0,
-                          mainAxisSpacing: 10.0,
-                          childAspectRatio: 1.0,
-                        ),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: afficheResultat.length,
-                        itemBuilder:
-                            (context, afficheResultatIndex) {
-                          final afficheResultatItem =
-                              afficheResultat[afficheResultatIndex];
-                          return Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'ACCEUIL_PAGE_Column_0r4bvx74_ON_TAP');
-                                logFirebaseEvent(
-                                    'Column_navigate_to');
-                          
-                                context.pushNamed(
-                                  'DetailProduit',
-                                  queryParameters: {
-                                    'fruits': serializeParam(
-                                      afficheResultatItem,
-                                      ParamType.Document,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    'fruits': afficheResultatItem,
-                                  },
-                                );
-                              },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    height: 120.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(
-                                              context)
-                                          .secondaryBackground,
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius:
-                                          BorderRadius.circular(
-                                              8.0),
-                                      child: Image.network(
-                                        afficheResultatItem.image,
-                                        width: 300.0,
-                                        height: 200.0,
-                                        fit: BoxFit.cover,
+                      return SizedBox(
+                        height: mediaquery.height * .45,
+                        child: GridView.builder(
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 1.0,
+                          ),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: afficheResultat.length,
+                          itemBuilder:
+                              (context, afficheResultatIndex) {
+                            final afficheResultatItem =
+                                afficheResultat[afficheResultatIndex];
+                            return Container(
+                               width: mediaquery.width,
+                              height: mediaquery.height,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black12),
+                                    borderRadius: BorderRadius.circular(8),
+                                    color:const Color.fromARGB(82, 200, 230, 201),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'ACCEUIL_PAGE_Column_0r4bvx74_ON_TAP');
+                                  logFirebaseEvent(
+                                      'Column_navigate_to');
+                            
+                                  context.pushNamed(
+                                    'DetailProduit',
+                                    queryParameters: {
+                                      'fruits': serializeParam(
+                                        afficheResultatItem,
+                                        ParamType.Document,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'fruits': afficheResultatItem,
+                                    },
+                                  );
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      height: 120.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(
+                                                context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(
+                                                8.0),
+                                        child: Image.network(
+                                          afficheResultatItem.image,
+                                          width: 300.0,
+                                          height: 200.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional
-                                        .fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize:
-                                          MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisSize:
-                                                MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment
-                                                    .start,
-                                            children: [
-                                              Text(
-                                                afficheResultatItem
-                                                    .nomProduit,
-                                                maxLines: 1,
-                                                style: FlutterFlowTheme
-                                                        .of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily:
-                                                          'Inter',
-                                                      fontSize:
-                                                          14.0,
-                                                      letterSpacing:
-                                                          0.0,
-                                                    ),
-                                              ),
-                                              RichText(
-                                                textScaler:
-                                                    MediaQuery.of(
-                                                            context)
-                                                        .textScaler,
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text:
-                                                          afficheResultatItem
-                                                              .prix,
-                                                      style: FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Inter',
-                                                            letterSpacing:
-                                                                0.0,
-                                                            fontWeight:
-                                                                FontWeight.normal,
-                                                          ),
-                                                    ),
-                                                    const TextSpan(
-                                                      text:
-                                                          ' F CFA',
-                                                      style:
-                                                          TextStyle(),
-                                                    )
-                                                  ],
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional
+                                          .fromSTEB(
+                                              8.0, 0.0, 8.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize:
+                                            MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment
+                                                .spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize:
+                                                  MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment
+                                                      .start,
+                                              children: [
+                                                Text(
+                                                  afficheResultatItem
+                                                      .nomProduit,
+                                                  maxLines: 1,
                                                   style: FlutterFlowTheme
                                                           .of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Inter',
+                                                        fontSize:
+                                                            14.0,
                                                         letterSpacing:
                                                             0.0,
-                                                        fontWeight:
-                                                            FontWeight
-                                                                .normal,
                                                       ),
                                                 ),
-                                              ),
-                                            ].divide(const SizedBox(
-                                                height: 7.0)),
+                                                RichText(
+                                                  textScaler:
+                                                      MediaQuery.of(
+                                                              context)
+                                                          .textScaler,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text:
+                                                            afficheResultatItem
+                                                                .prix,
+                                                        style: FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight.normal,
+                                                            ),
+                                                      ),
+                                                      const TextSpan(
+                                                        text:
+                                                            ' F CFA',
+                                                        style:
+                                                            TextStyle(),
+                                                      )
+                                                    ],
+                                                    style: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Inter',
+                                                          letterSpacing:
+                                                              0.0,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .normal,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ].divide(const SizedBox(
+                                                  height: 2.0)),
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ].divide(const SizedBox(height: 7.0)),
+                                  ].divide(const SizedBox(height: 7.0)),
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       );
                     },
                   ),
@@ -699,10 +707,8 @@ class _AcceuilWidgetState extends State<AcceuilWidget> {
               }
                             },
                           ),
-              
-                             
-              
-              
+             
+                          
                             ],
                           ),
             ],

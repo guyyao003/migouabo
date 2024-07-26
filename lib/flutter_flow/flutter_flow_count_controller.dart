@@ -7,6 +7,7 @@ class FlutterFlowCountController extends StatefulWidget {
     required this.incrementIconBuilder,
     required this.countBuilder,
     required this.count,
+    this.prix,
     required this.updateCount,
     this.stepSize = 1,
     this.minimum,
@@ -18,6 +19,7 @@ class FlutterFlowCountController extends StatefulWidget {
   final Widget Function(bool enabled) incrementIconBuilder;
   final Widget Function(int count) countBuilder;
   final int count;
+  final int? prix;
   final Function(int) updateCount;
   final int stepSize;
   final int? minimum;
@@ -29,25 +31,42 @@ class FlutterFlowCountController extends StatefulWidget {
       _FlutterFlowCountControllerState();
 }
 
-class _FlutterFlowCountControllerState
-    extends State<FlutterFlowCountController> {
+class _FlutterFlowCountControllerState extends State<FlutterFlowCountController> {
   int get count => widget.count;
   int? get minimum => widget.minimum;
   int? get maximum => widget.maximum;
   int get stepSize => widget.stepSize;
+  int get prix => widget.prix!;
+
+  late int totalPrice;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize totalPrice based on the initial count
+    totalPrice = count * prix;
+  }
 
   bool get canDecrement => minimum == null || count - stepSize >= minimum!;
   bool get canIncrement => maximum == null || count + stepSize <= maximum!;
 
   void _decrementCounter() {
     if (canDecrement) {
-      setState(() => widget.updateCount(count - stepSize));
+      setState(() {
+        widget.updateCount(count - stepSize);
+        totalPrice -= prix * stepSize;
+        print(totalPrice);
+      });
     }
   }
 
   void _incrementCounter() {
     if (canIncrement) {
-      setState(() => widget.updateCount(count + stepSize));
+      setState(() {
+        widget.updateCount(count + stepSize);
+        totalPrice += prix * stepSize;
+        print(totalPrice);
+      });
     }
   }
 
@@ -70,3 +89,4 @@ class _FlutterFlowCountControllerState
         ),
       );
 }
+

@@ -119,6 +119,8 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
+
+
   @override
   void dispose() {
     _model.dispose();
@@ -126,8 +128,14 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
     super.dispose();
   }
 
+    prixToInt( price ){
+     return int.parse(price);
+   }
+
   @override
   Widget build(BuildContext context) {
+    int leprix=prixToInt(widget.fruits?.prix);
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -425,132 +433,89 @@ class _DetailProduitWidgetState extends State<DetailProduitWidget>
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation']!),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsetsDirectional.fromSTEB(
-                      //       16.0, 20.0, 16.0, 10.0),
-                      //   child: Row(
-                      //     mainAxisSize: MainAxisSize.max,
-                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //     children: [
-                      //       RichText(
-                      //         textScaler: MediaQuery.of(context).textScaler,
-                      //         text: TextSpan(
-                      //           children: [
-                      //             TextSpan(
-                      //               text: valueOrDefault<String>(
-                      //                 widget.fruits?.prix,
-                      //                 'prix',
-                      //               ),
-                      //               style: const TextStyle(),
-                      //             ),
-                      //             const TextSpan(
-                      //               text: ' F CFA',
-                      //               style: TextStyle(),
-                      //             )
-                      //           ],
-                      //           style: FlutterFlowTheme.of(context)
-                      //               .headlineSmall
-                      //               .override(
-                      //                 fontFamily: 'Inter',
-                      //                 letterSpacing: 0.0,
-                      //               ),
-                      //         ),
-                      //         textAlign: TextAlign.start,
-                      //       ),
-                      //       Container(
-                      //         width: 130.0,
-                      //         height: 50.0,
-                      //         decoration: BoxDecoration(
-                      //           color: FlutterFlowTheme.of(context)
-                      //               .secondaryBackground,
-                      //           borderRadius: BorderRadius.circular(12.0),
-                      //           shape: BoxShape.rectangle,
-                      //           border: Border.all(
-                      //             color: FlutterFlowTheme.of(context).alternate,
-                      //             width: 2.0,
-                      //           ),
-                      //         ),
-                      //         child: FlutterFlowCountController(
-                      //           decrementIconBuilder: (enabled) => Icon(
-                      //             Icons.remove_rounded,
-                      //             color: enabled
-                      //                 ? FlutterFlowTheme.of(context)
-                      //                     .secondaryText
-                      //                 : FlutterFlowTheme.of(context)
-                      //                     .secondaryText,
-                      //             size: 16.0,
-                      //           ),
-                      //           incrementIconBuilder: (enabled) => Icon(
-                      //             Icons.add_rounded,
-                      //             color: enabled
-                      //                 ? FlutterFlowTheme.of(context).primary
-                      //                 : FlutterFlowTheme.of(context)
-                      //                     .secondaryText,
-                      //             size: 16.0,
-                      //           ),
-                      //           countBuilder: (count) => Text(
-                      //             count.toString(),
-                      //             style: FlutterFlowTheme.of(context)
-                      //                 .headlineSmall
-                      //                 .override(
-                      //                   fontFamily: 'Inter',
-                      //                   letterSpacing: 0.0,
-                      //                 ),
-                      //           ),
-                      //           count: _model.countControllerValue ??= 1,
-                      //           updateCount: (count) => setState(
-                      //               () => _model.countControllerValue = count),
-                      //           stepSize: 1,
-                      //           minimum: 1,
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ).animateOnPageLoad(
-                      //       animationsMap['rowOnPageLoadAnimation']!),
-                      // ),
-                      Consumer<CartModel>(
-    builder: (context, cart, child) {
-      // Check if product is null to avoid runtime errors
-      final product = widget.product;
-      if (product == null) {
-        return Center(child: Text('Produit non disponible'));
-      }
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 20.0, 16.0, 10.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            RichText(
+                              textScaler: MediaQuery.of(context).textScaler,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: ('${leprix}'),
+                                    style: const TextStyle(),
+                                  ),
+                                  const TextSpan(
+                                    text: ' F CFA',
+                                    style: TextStyle(),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                            Container(
+                              width: 130.0,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(12.0),
+                                shape: BoxShape.rectangle,
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2.0,
+                                ),
+                              ),
+                              child: FlutterFlowCountController(
+                                prix: leprix,
+                                decrementIconBuilder: (enabled) => Icon(
+                                  Icons.remove_rounded,
+                                  color: enabled
+                                      ? FlutterFlowTheme.of(context)
+                                          .secondaryText
+                                      : FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                  size: 16.0,
+                                ),
+                                incrementIconBuilder: (enabled) => Icon(
+                                  Icons.add_rounded,
+                                  color: enabled
+                                      ? FlutterFlowTheme.of(context).primary
+                                      : FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                  size: 16.0,
+                                ),
+                                countBuilder: (count) => Text(
+                                  count.toString(),
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                count: _model.countControllerValue ??= 1,
+                                updateCount: (count) => setState(
+                                    () => _model.countControllerValue = count),
+                                stepSize: 1,
+                                minimum: 1,
+                              ),
+                            ),
+                          ],
+                        ).animateOnPageLoad(
+                            animationsMap['rowOnPageLoadAnimation']!),
+                      ),
 
-      return Column(
-        children: [
-          Text(product.nomProduit),
-          Text('${product.prix} F CFA'),
-          Row(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.remove),
-                onPressed: () {
-                  logFirebaseEvent('DECREMENT_ITEM');
-                  cart.decrementQuantity(product); // Correct usage
-                },
-              ),
-              Text('${product.quantite}'),
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () {
-                  logFirebaseEvent('INCREMENT_ITEM');
-                  cart.incrementQuantity(product); // Correct usage
-                },
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  logFirebaseEvent('ADD_TO_CART');
-                  cart.addItem(product); // Correct usage
-                },
-                child: const Text('Ajouter au Panier'),
-              ),
-            ],
-          ),
-          Text('Total: ${cart.totalPrice} F CFA'),
-        ],
-      );
-    },
-  ),
+                      
                     ],
                   ),
                 ),

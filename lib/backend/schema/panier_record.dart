@@ -15,43 +15,55 @@ class PanierRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "nom_produit" field.
+  // Fields
   String? _nomProduit;
-  String get nomProduit => _nomProduit ?? '';
-  bool hasNomProduit() => _nomProduit != null;
-
-  // "prix" field.
   String? _prix;
-  String get prix => _prix ?? '';
-  bool hasPrix() => _prix != null;
-
-  // "image" field.
   String? _image;
-  String get image => _image ?? '';
-  bool hasImage() => _image != null;
-
-  // "categorie" field.
   String? _categorie;
-  String get categorie => _categorie ?? '';
-  bool hasCategorie() => _categorie != null;
-
-  // "quantite" field.
   int? _quantite;
-  int get quantite => _quantite ?? 0;
-  bool hasQuantite() => _quantite != null;
-
-  // "description" field.
   String? _description;
+  int? _totalPrix;
+
+  // Getters
+  String get nomProduit => _nomProduit ?? '';
+  String get prix => _prix ?? '';
+  String get image => _image ?? '';
+  String get categorie => _categorie ?? '';
+  int get quantite => _quantite ?? 0;
   String get description => _description ?? '';
+  int get totalPrix => _totalPrix ?? 0;
+
+  // Checkers
+  bool hasNomProduit() => _nomProduit != null;
+  bool hasPrix() => _prix != null;
+  bool hasImage() => _image != null;
+  bool hasCategorie() => _categorie != null;
+  bool hasQuantite() => _quantite != null;
   bool hasDescription() => _description != null;
+  bool hasTotalPrix() => _totalPrix != null;
+
+  // Conversion from string to int
+  int prixToInt(String price) {
+    return int.tryParse(price.replaceAll('F CFA', '').trim()) ?? 0;
+  }
 
   void _initializeFields() {
     _nomProduit = snapshotData['nom_produit'] as String?;
     _prix = snapshotData['prix'] as String?;
     _image = snapshotData['image'] as String?;
     _categorie = snapshotData['categorie'] as String?;
-    _quantite = castToType<int>(snapshotData['quantite']);
+    _quantite = snapshotData['quantite'] as int?;
     _description = snapshotData['description'] as String?;
+    _totalPrix = prixToInt(prix) * quantite;
+  }
+
+  // Calculate the total for all items in the cart
+  static int calculateTotaux(List<PanierRecord> panierRecords) {
+    int total = 0;
+    for (var record in panierRecords) {
+      total += record.totalPrix;
+    }
+    return total;
   }
 
   static CollectionReference get collection =>
@@ -119,7 +131,8 @@ class PanierRecordDocumentEquality implements Equality<PanierRecord> {
         e1?.image == e2?.image &&
         e1?.categorie == e2?.categorie &&
         e1?.quantite == e2?.quantite &&
-        e1?.description == e2?.description;
+        e1?.description == e2?.description &&
+        e1?.totalPrix == e2?.totalPrix;
   }
 
   @override
@@ -129,7 +142,8 @@ class PanierRecordDocumentEquality implements Equality<PanierRecord> {
         e?.image,
         e?.categorie,
         e?.quantite,
-        e?.description
+        e?.description,
+        e?.totalPrix,
       ]);
 
   @override

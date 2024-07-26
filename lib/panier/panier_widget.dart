@@ -25,6 +25,7 @@ class _PanierWidgetState extends State<PanierWidget> {
 
   @override
   void initState() {
+
     super.initState();
     _model = createModel(context, () => PanierModel());
     ChangeNotifierProvider(
@@ -32,14 +33,29 @@ class _PanierWidgetState extends State<PanierWidget> {
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Panier'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    calculateTotaux();
   }
 
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
+ int total = 0;
+ int totauxFinal = 0;
+ Future<void> calculateTotaux() async {
+    List<PanierRecord> panierRecords = await PanierRecord.collection.get().then(
+      (querySnapshot) => querySnapshot.docs.map((doc) => PanierRecord.fromSnapshot(doc)).toList(),
+    );
+
+    setState(() {
+      total = PanierRecord.calculateTotaux(panierRecords);
+      totauxFinal = total + 500;
+    });
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -220,8 +236,8 @@ class _PanierWidgetState extends State<PanierWidget> {
                                                       children: [
                                                         TextSpan(
                                                           text:
-                                                              listViewPanierRecord
-                                                                  .prix,
+                                                              ('${listViewPanierRecord
+                                                                  .totalPrix}'),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .labelMedium
@@ -246,6 +262,7 @@ class _PanierWidgetState extends State<PanierWidget> {
                                                           ),
                                                     ),
                                                   ),
+                                                  
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
@@ -294,6 +311,7 @@ class _PanierWidgetState extends State<PanierWidget> {
                                               ),
                                             ),
                                           ),
+   
                                           FlutterFlowIconButton(
                                             borderColor: Colors.transparent,
                                             borderRadius: 30.0,
@@ -433,12 +451,25 @@ class _PanierWidgetState extends State<PanierWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                                RichText(
-                                  textScaler: MediaQuery.of(context).textScaler,
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: '3500',
+     //////////////////////////////////////////////////////////////////////
+                                 RichText(
+                                      textScaler: MediaQuery.of(context).textScaler,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: '$total',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                          const TextSpan(
+                                            text: ' F CFA',
+                                            style: TextStyle(),
+                                          )
+                                        ],
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
@@ -446,18 +477,7 @@ class _PanierWidgetState extends State<PanierWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                       ),
-                                      const TextSpan(
-                                        text: ' F CFA',
-                                        style: TextStyle(),
-                                      )
-                                    ],
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
+                                
                                 ),
                               ],
                             ),
@@ -549,7 +569,7 @@ class _PanierWidgetState extends State<PanierWidget> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: '4000',
+                                          text: '$totauxFinal',
                                           style: FlutterFlowTheme.of(context)
                                               .displaySmall
                                               .override(
@@ -622,15 +642,15 @@ class _PanierWidgetState extends State<PanierWidget> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: 'Finalisé votre commande( ',
+                          text: 'Finalisez votre commande( ',
                           style:
-                              FlutterFlowTheme.of(context).titleMedium.override(
+                              FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Inter',
                                     letterSpacing: 0.0,
                                   ),
                         ),
-                        const TextSpan(
-                          text: '4000',
+                         TextSpan(
+                          text: '$totauxFinal',
                           style: TextStyle(),
                         ),
                         const TextSpan(

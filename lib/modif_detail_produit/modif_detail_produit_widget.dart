@@ -117,6 +117,10 @@ class _ModifDetailProduitWidgetState extends State<ModifDetailProduitWidget>
     super.dispose();
   }
 
+     prixToInt( price ){
+     return int.parse(price);
+   }
+
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
@@ -453,6 +457,7 @@ class _ModifDetailProduitWidgetState extends State<ModifDetailProduitWidget>
                                 ),
                               ),
                               child: FlutterFlowCountController(
+                            
                                 decrementIconBuilder: (enabled) => Icon(
                                   Icons.remove_rounded,
                                   color: enabled

@@ -78,7 +78,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ),
                         ),
                         Text(
-                          'Nom de l\'utilisateur',
+                          'Guy Yao',
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
