@@ -425,9 +425,9 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              // logFirebaseEvent(
-                              //     'SIGN_IN_PAGE_CRÉER_UN_COMPTE_BTN_ON_TAP');
-                              // logFirebaseEvent('Button_navigate_to');
+                              logFirebaseEvent(
+                                  'SIGN_IN_PAGE_CRÉER_UN_COMPTE_BTN_ON_TAP');
+                              logFirebaseEvent('Button_navigate_to');
 
                               context.pushNamed('Onboarding_CreateAccount');
                             },

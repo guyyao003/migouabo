@@ -58,6 +58,7 @@ class MealsRecord extends FirestoreRecord {
     _mealFavorites = getDataList(snapshotData['meal_favorites']);
     _mealCalories = castToType<int>(snapshotData['meal_calories']);
     _mealDiet = getDataList(snapshotData['meal_diet']);
+    
   }
 
   static CollectionReference get collection =>

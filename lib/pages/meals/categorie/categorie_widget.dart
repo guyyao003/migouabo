@@ -1,3 +1,9 @@
+import 'package:migouabo/liste_product_fruits/liste_product_fruits_widget.dart';
+import 'package:migouabo/liste_product_legume/liste_product_legume_widget.dart';
+import 'package:migouabo/liste_product_poisson/liste_product_poisson_widget.dart';
+import 'package:migouabo/liste_product_viande/liste_product_viande_widget.dart';
+import 'package:migouabo/panier/panier_widget.dart';
+
 import '../../../flutter_flow/flutter_flow_icon_button.dart';
 import '../../../flutter_flow/flutter_flow_theme.dart';
 import '../../../flutter_flow/flutter_flow_util.dart';
@@ -45,38 +51,30 @@ class _CategorieWidgetState extends State<CategorieWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
-          title: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-            child: Text(
+          title: Text(
               'Migouabo',
               style: FlutterFlowTheme.of(context).displayLarge.override(
                     fontFamily: 'Plus Jakarta Sans',
-                    fontSize: 40.0,
+                    fontSize: 30.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.bold,
                   ),
             ),
-          ),
+          
           actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
-              child: FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).primary,
-                borderRadius: 20.0,
-                borderWidth: 1.0,
-                buttonSize: 40.0,
-                fillColor: FlutterFlowTheme.of(context).accent1,
-                icon: Icon(
-                  Icons.shopping_cart_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 30.0,
-                ),
-                onPressed: () {
-                  print('IconButton pressed ...');
-                },
-              ),
-            ),
+            GestureDetector(
+              onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PanierWidget()));
+
+                  
+              },
+              child: Icon(Icons.shopping_cart_outlined,color: Colors.black,size: 25,)),
+              SizedBox(width: 15,)
           ],
+          
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -132,10 +130,11 @@ class _CategorieWidgetState extends State<CategorieWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
-                            logFirebaseEvent('menuItem_navigate_to');
+                              Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ListeProductFruitsWidget()));
 
-                            context.pushNamed('ListeProductFruits');
                           },
                           child: Container(
                             width: double.infinity,
@@ -220,10 +219,11 @@ class _CategorieWidgetState extends State<CategorieWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
-                            logFirebaseEvent('menuItem_navigate_to');
+                             Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ListeProductLegumeWidget()));
 
-                            context.pushNamed('ListeProductLegume');
                           },
                           child: Container(
                             width: double.infinity,
@@ -316,10 +316,11 @@ class _CategorieWidgetState extends State<CategorieWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
-                            logFirebaseEvent('menuItem_navigate_to');
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ListeProductPoissonWidget()));
 
-                            context.pushNamed('ListeProductPoisson');
                           },
                           child: Container(
                             width: double.infinity,
@@ -412,10 +413,11 @@ class _CategorieWidgetState extends State<CategorieWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            logFirebaseEvent('CATEGORIE_PAGE_menuItem_ON_TAP');
-                            logFirebaseEvent('menuItem_navigate_to');
+                            Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ListeProductViandeWidget()));
 
-                            context.pushNamed('ListeProductViande');
                           },
                           child: Container(
                             width: double.infinity,

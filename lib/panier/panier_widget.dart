@@ -90,11 +90,8 @@ class _PanierWidgetState extends State<PanierWidget> {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
               child: Text(
-                'Mon Panier',
-                style: FlutterFlowTheme.of(context).displaySmall.override(
-                      fontFamily: 'Inter',
-                      letterSpacing: 0.0,
-                    ),
+                'Mon panier',
+                style: TextStyle(fontSize: 25)
               ),
             ),
           ),
@@ -180,7 +177,8 @@ class _PanierWidgetState extends State<PanierWidget> {
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 8.0, 8.0, 8.0),
-                                      child: Row(
+                                      child:
+                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -275,7 +273,7 @@ class _PanierWidgetState extends State<PanierWidget> {
                                                       text: TextSpan(
                                                         children: [
                                                           TextSpan(
-                                                            text: 'Quanity: ',
+                                                            text: 'Quanité: ',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .labelSmall
@@ -357,50 +355,57 @@ class _PanierWidgetState extends State<PanierWidget> {
                                               }
                                             },
                                           ),
-                                          FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 30.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            icon: Icon(
-                                              Icons.delete_outline_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              size: 20.0,
-                                            ),
-                                            onPressed: () async {
-                                              logFirebaseEvent(
-                                                  'PANIER_delete_outline_rounded_ICN_ON_TAP');
-                                              if (!loggedIn) {
-                                                logFirebaseEvent(
-                                                    'IconButton_show_snack_bar');
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Veuillez d\'abord vous connecter',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
-                                                  ),
-                                                );
-                                                logFirebaseEvent(
-                                                    'IconButton_navigate_to');
-
-                                                context.pushNamed('SignIn');
-                                              }
+                                          GestureDetector(
+                                            onTap: (){
+                                              setState(() {
+                                               
+                                              });
                                             },
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 30.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 40.0,
+                                              icon: Icon(
+                                                Icons.delete_outline_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                size: 20.0,
+                                              ),
+                                              onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'PANIER_delete_outline_rounded_ICN_ON_TAP');
+                                                if (!loggedIn) {
+                                                  logFirebaseEvent(
+                                                      'IconButton_show_snack_bar');
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Veuillez d\'abord vous connecter',
+                                                        style: TextStyle(
+                                                          color:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryText,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                  );
+                                                  logFirebaseEvent(
+                                                      'IconButton_navigate_to');
+                                            
+                                                  context.pushNamed('SignIn');
+                                                }
+                                              },
+                                            ),
                                           ),
                                         ],
                                       ),

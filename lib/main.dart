@@ -160,6 +160,8 @@ class _NavBarPageState extends State<NavBarPage> {
       extendBody: true,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
+        shadowColor: const Color.fromARGB(255, 255, 7, 7),
+        color:Color.fromARGB(255, 243, 241, 238),
         notchMargin: 8.0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

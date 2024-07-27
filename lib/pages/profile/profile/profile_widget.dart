@@ -69,7 +69,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Bienvenue,',
+                          'Bienvenue',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -77,15 +77,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 letterSpacing: 0.0,
                               ),
                         ),
-                        Text(
-                          'Guy Yao',
-                          style: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .override(
-                                fontFamily: 'Inter',
-                                letterSpacing: 0.0,
-                              ),
-                        ),
+                        // Text(
+                        //   'Guy Yao',
+                        //   style: FlutterFlowTheme.of(context)
+                        //       .displaySmall
+                        //       .override(
+                        //         fontFamily: 'Inter',
+                        //         letterSpacing: 0.0,
+                        //       ),
+                        // ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 0.0),
