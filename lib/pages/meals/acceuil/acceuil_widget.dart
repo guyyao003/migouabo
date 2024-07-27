@@ -295,7 +295,7 @@ class _AcceuilWidgetState extends State<AcceuilWidget> {
                           autoPlay: true,
                           pauseAutoPlayOnTouch: true,
                           autoPlayCurve: Curves.easeInOut,
-                          height: MediaQuery.of(context).size.height * 0.25,
+                          height: MediaQuery.of(context).size.height * 0.23,
                           enlargeCenterPage: true,
                         ),
                         items: [
@@ -344,7 +344,7 @@ class _AcceuilWidgetState extends State<AcceuilWidget> {
                   style: theme
                       .bodyLarge?.copyWith(
                         fontSize: 22,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.bold,
                       )
                       ),
                 ),],

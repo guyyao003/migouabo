@@ -69,8 +69,8 @@ class _MethodePaymentWidgetState extends State<MethodePaymentWidget> {
               'Migouabo',
               style: FlutterFlowTheme.of(context).headlineMedium.override(
                     fontFamily: 'Plus Jakarta Sans',
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    fontSize: 40.0,
+                    color: Colors.white,
+                    fontSize: 30.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.bold,
                   ),
